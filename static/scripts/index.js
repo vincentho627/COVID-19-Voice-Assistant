@@ -1,4 +1,6 @@
-import countries from './countries.js'
+import {countries} from './countries.js'
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API
 
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
@@ -18,7 +20,7 @@ recognition.maxAlternatives = 1;
 const diagnostic = document.querySelector('.output');
 var started = false;
 
-document.body.onclick = function() {
+document.getElementById("select").onclick = function() {
 	if (!started) {
 	  recognition.start();
 	  console.log('Ready to receive a country.');
@@ -27,8 +29,23 @@ document.body.onclick = function() {
 };
 
 recognition.onresult = function(event) {
-  const country = event.results[0][0].transcript;
-  diagnostic.textContent = 'Result received: ' + country + '.';
+  const transcript = event.results[0][0].transcript;
+  diagnostic.textContent = 'Result received: ' + transcript + '.';
+  let result = {"text": transcript};
+  fetch(`${window.origin}/data`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(result),
+      cache: "no-cache",
+      headers: new Headers({
+          "content-type": "application/json"
+      }),
+      redirect: 'follow',
+  }).then(response => {
+        window.location.href = response.url;
+  }).catch(function(err) {
+        console.info(err + " url: " + url);
+    });
   console.log('Confidence: ' + event.results[0][0].confidence);
 };
 

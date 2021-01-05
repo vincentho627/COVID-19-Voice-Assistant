@@ -250,4 +250,4 @@ const countries = [
 	"Åland Islands"
 ];
 
-export default countries
+export {countries}

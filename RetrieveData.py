@@ -25,14 +25,11 @@ def getConfig():
         }
 
 
-def getUrl(countries):
-    urls = []
+def getUrl(country):
     url = "https://api.covid19api.com/total/country/"
-    for country in countries:
-        country = country.lower()
-        country = country.replace(' ', '-')
-        urls.append(url + country)
-    return urls
+    country = country.lower()
+    country = country.replace(' ', '-')
+    return url + country
 
 
 def getParam(countries):
@@ -45,30 +42,27 @@ def getParam(countries):
 
 
 def getCOVIDResults(countries):
-    urls = getUrl(countries)
-    responses = []
+    url = getUrl(countries)
 
-    for url in urls:
-        try:
-            response = requests.request("GET", url)
-            resp = response.json()[len(response.json()) - 1]
-            result = {}
-            country = resp['Country']
-            confirmed = resp['Confirmed']
-            deaths = resp['Deaths']
-            recovered = resp['Recovered']
-            percent = float(deaths) / float(confirmed) * 100
+    try:
+        response = requests.request("GET", url)
+        resp = response.json()[len(response.json()) - 1]
+        result = {}
+        country = resp['Country']
+        confirmed = resp['Confirmed']
+        deaths = resp['Deaths']
+        recovered = resp['Recovered']
+        percent = float(deaths) / float(confirmed) * 100
 
-            result['name'] = country
-            result['confirmed'] = confirmed
-            result['deaths'] = deaths
-            result['recovered'] = recovered
-            result['percent'] = percent
-        except Exception as e:
-            return [], False
-        responses.append(result)
+        result['name'] = country
+        result['confirmed'] = confirmed
+        result['deaths'] = deaths
+        result['recovered'] = recovered
+        result['percent'] = percent
+    except Exception as e:
+        return None, False
 
-    return responses, True
+    return result, True
 
 
 if __name__ == '__main__':
