@@ -7,13 +7,23 @@ body {
   background: linear-gradient(20deg, #e66465 44%, #E4E9FD 44%);
 }
 
+button {
+  outline:none !important;
+}
+
 .circle {
+  position: relative;
+  overflow: hidden;
   border: none;
   border-radius: 50%;
   width: 150px;
   height: 150px;
   padding-left: 0;
   background: linear-gradient(0.25turn, #ffe9c5, #fa9191);
+}
+
+.circle:hover {
+    background: #ff577f;
 }
 
 .icon-circle {
@@ -38,3 +48,12 @@ body {
   color: #E4E9FD;
 }
 
+@media only screen and (max-width: 600px) {
+  body {
+    padding: 0 50px;
+  }
+
+  .logo {
+    width: 45vh;
+  }
+}

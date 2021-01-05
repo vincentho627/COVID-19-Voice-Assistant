@@ -9,15 +9,20 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <link rel= "stylesheet" type="text/css" href="{{ url_for('static',filename='/css/index.css') }}">
     <link rel= "stylesheet" type="text/css" href="{{ url_for('static',filename='/css/voice.css') }}">
 </head>
 <body>
-
-    <button class="circle"><img id="select" class="circle icon-circle" src="../static/images/mic.png" alt="microphone pic"></button>
-
     <form action="/" method="GET">
-        <button>Home page</button>
+        <button class="home">Home page</button>
     </form>
+
+    <img class="logo" src="../static/images/logo.png" alt="logo pic">
+    <h4 class="options">Press the mic to start talking and unpress to pause.</h4>
+    <h5>The website will redirect once you mention a country.</h5><br>
+    <div>
+        <button class="circle"><img id="mic" class="circle icon-circle" src="../static/images/mic.png" alt="microphone pic"></button>
+    </div>
 
     <script type="module" src="../static/js/voice.js"></script>
 </body>

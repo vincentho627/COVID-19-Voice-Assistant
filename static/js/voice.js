@@ -19,14 +19,35 @@ recognition.maxAlternatives = 1;
 
 // const diagnostic = document.querySelector('.output');
 var started = false;
+var mic = document.getElementById("mic");
 
-document.getElementById("select").onclick = function() {
+mic.style.background = "linear-gradient(0.25turn, #ffe9c5, #fa9191)";
+
+mic.onmouseover = function() {
+    if (!started) {
+        mic.style.background = "";
+        mic.style.backgroundColor = "#ff577f";
+    }
+};
+
+mic.onmouseleave = function() {
+    if (!started) {
+        mic.style.background = "linear-gradient(0.25turn, #ffe9c5, #fa9191)";
+        mic.style.backgroundColor = "none";
+    }
+};
+
+mic.onclick = function() {
 	if (!started) {
 	    recognition.start();
 	    console.log('Ready to receive a country.');
+	    mic.classList.add("glow");
+	    mic.style.background = "";
 	    started = true;
 	} else {
 	    recognition.stop();
+	    mic.style.background = "linear-gradient(0.25turn, #ffe9c5, #fa9191)";
+	    mic.classList.remove("glow");
 	    console.log('Paused.');
         started = false;
     }
@@ -56,6 +77,7 @@ recognition.onresult = function(event) {
 
 recognition.onspeechend = function() {
     recognition.stop();
+    document.getElementById("select").classList.remove("glow");
     started = false;
 };
 

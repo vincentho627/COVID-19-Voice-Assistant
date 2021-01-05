@@ -1,6 +1,78 @@
 body {
-  min-height: 100vh;
-  text-align: center;
-  font-family: 'Hind Siliguri', sans-serif;
-  background: linear-gradient(20deg, #e66465 44%, #E4E9FD 44%);
+    min-height: 100vh;
+    text-align: center;
+    font-family: 'Hind Siliguri', sans-serif;
+    background: linear-gradient(20deg, #e66465 44%, #E4E9FD 44%);
+}
+
+.circle {
+    width: 250px;
+    height: 250px;
+    background: none;
+}
+
+.home {
+    border-radius: 10%;
+    text-decoration: none;
+    border: 1px solid #ff577f;
+    position: relative;
+    overflow: hidden;
+    background-color: #cd5d7d;
+    height: 45px;
+    width: 125px;
+    font-size: 20px;
+    color: #E4E9FD;
+    left: 40%;
+    margin-top: 20px;
+}
+
+.logo {
+    width: 55vh;
+    margin-top: -65px;
+}
+
+.home:hover {
+    box-shadow: 1px 1px 25px 10px #ff577f;
+}
+
+.home:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, #ff577f, transparent);
+    transition: all 650ms;
+}
+
+.home:hover:before {
+  left: 100%;
+}
+
+
+.glow {
+    animation: glowing 1300ms infinite;
+}
+
+ @keyframes glowing {
+     0% {
+         background-color: #29a19c;
+         box-shadow: 0 0 5px #29a19c;
+     }
+     50% {
+         background-color: #29a19c;
+         box-shadow: 0 0 20px #29a19c;
+     }
+     100% {
+         background-color: #29a19c;
+         box-shadow: 0 0 5px #29a19c;
+     }
+ }
+
+ @media only screen and (max-width: 600px) {
+    .circle {
+        width: 200px;
+        height: 200px;
+    }
 }
