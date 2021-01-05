@@ -13,6 +13,16 @@ def start():
     return render_template("index.html")
 
 
+@app.route("/voice")
+def voice():
+    return render_template("voice.html")
+
+
+@app.route("/manual")
+def manual():
+    return render_template("manual.html")
+
+
 @app.route("/data", methods=["GET", "POST"])
 def getData():
     global result, voice

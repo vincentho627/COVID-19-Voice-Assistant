@@ -17,7 +17,7 @@ recognition.lang = 'en-US';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
-const diagnostic = document.querySelector('.output');
+// const diagnostic = document.querySelector('.output');
 var started = false;
 
 document.getElementById("select").onclick = function() {
@@ -30,7 +30,7 @@ document.getElementById("select").onclick = function() {
 
 recognition.onresult = function(event) {
     const transcript = event.results[0][0].transcript;
-    diagnostic.textContent = 'Result received: ' + transcript + '.';
+    // diagnostic.textContent = 'Result received: ' + transcript + '.';
     let result = {"text": transcript};
     fetch(`${window.origin}/data`, {
         method: "POST",
@@ -55,10 +55,10 @@ recognition.onspeechend = function() {
     started = false;
 };
 
-recognition.onnomatch = function(event) {
-    diagnostic.textContent = "I didn't recognise that country.";
-};
+// recognition.onnomatch = function(event) {
+//     diagnostic.textContent = "I didn't recognise that country.";
+// };
 
-recognition.onerror = function(event) {
-    diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
-};
+// recognition.onerror = function(event) {
+//     diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+// };

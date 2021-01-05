@@ -4,39 +4,41 @@
     <meta charset="UTF-8">
     <title>COVID-19 Statistics</title>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel= "stylesheet" type="text/css" href="{{ url_for('static',filename='/css/index_style.css') }}">
+    <link rel= "stylesheet" type="text/css" href="{{ url_for('static',filename='/css/index.css') }}">
 </head>
 <body>
-    <div>
-        <p class="output"><em>...diagnostic messages</em></p>
-    </div>
     <img class="logo" src="../static/images/logo.png" alt="logo pic">
-
-    <h4>Please select your options</h4><br>
+    <h4 class="options">Please select your options</h4><br><br>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-12">
-                <img class="circle" src="../static/images/microphone.png" alt="microphone pic">
-                <p id="select">Select here for voice assistant</p>
+                <form action="/voice" method="GET">
+                    <button class="circle"><img class="circle icon-circle" src="../static/images/mic.png" alt="microphone pic"></button><br>
+                    <p class="descriptions">Click here for voice assistant</p>
+                </form>
             </div>
             <div class="col-md-6 col-sm-12">
-                <img class="circle" src="../static/images/input.png" alt="input pic">
-                <p>Select here for manual inputs</p>
+                <form action="/manual" method="GET">
+                    <button class="circle"><img class="circle icon-circle" src="../static/images/manual.png" alt="input pic"></button><br>
+                    <p class="descriptions">Click here for manual inputs</p>
+                </form>
             </div>
         </div>
     </div>
 
-    <form action="/data" method="POST">
+    <!-- <form action="/data" method="POST">
         <label for="country">Country name:</label><br>
         <input type="text" id="country" name="country"><br>
         <button>Get Data</button>
-    </form>
+    </form> -->
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script type="module" src="../static/js/index.js"></script>
 </body>
 </html>
