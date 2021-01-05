@@ -4,6 +4,8 @@ from ExtractKeyInfo import extractCountry
 from RetrieveData import getCOVIDResults
 
 app = Flask(__name__, template_folder='templates')
+result = None
+voice = False
 
 
 @app.route("/")
@@ -13,9 +15,11 @@ def start():
 
 @app.route("/data", methods=["GET", "POST"])
 def getData():
+    global result, voice
     if request.method == "POST":
         req = request.get_json()
         if req and 'text' in req:
+            voice = True
             country = extractCountry(req['text'])
         else:
             country = request.form['country']
@@ -27,7 +31,11 @@ def getData():
         else:
             return render_template("error.html", country=result)
     else:
-        return redirect("/")
+        if voice:
+            voice = False
+            return render_template("country.html", country=result)
+        else:
+            return redirect("/")
 
 
 if __name__ == '__main__':

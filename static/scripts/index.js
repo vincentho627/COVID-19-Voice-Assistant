@@ -29,35 +29,36 @@ document.getElementById("select").onclick = function() {
 };
 
 recognition.onresult = function(event) {
-  const transcript = event.results[0][0].transcript;
-  diagnostic.textContent = 'Result received: ' + transcript + '.';
-  let result = {"text": transcript};
-  fetch(`${window.origin}/data`, {
-      method: "POST",
-      credentials: "include",
-      body: JSON.stringify(result),
-      cache: "no-cache",
-      headers: new Headers({
-          "content-type": "application/json"
-      }),
-      redirect: 'follow',
-  }).then(response => {
-        window.location.href = response.url;
-  }).catch(function(err) {
+    const transcript = event.results[0][0].transcript;
+    diagnostic.textContent = 'Result received: ' + transcript + '.';
+    let result = {"text": transcript};
+    fetch(`${window.origin}/data`, {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(result),
+        cache: "no-cache",
+        headers: new Headers({
+            "content-type": "application/json"
+        }),
+        redirect: 'follow',
+    }).then(response => {
+        console.log(response);
+        window.location.replace(response.url);
+    }).catch(function(err) {
         console.info(err + " url: " + url);
     });
-  console.log('Confidence: ' + event.results[0][0].confidence);
+    console.log('Confidence: ' + event.results[0][0].confidence);
 };
 
 recognition.onspeechend = function() {
-  recognition.stop();
-  started = false;
+    recognition.stop();
+    started = false;
 };
 
 recognition.onnomatch = function(event) {
-  diagnostic.textContent = "I didn't recognise that country.";
+    diagnostic.textContent = "I didn't recognise that country.";
 };
 
 recognition.onerror = function(event) {
-  diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+    diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
 };
