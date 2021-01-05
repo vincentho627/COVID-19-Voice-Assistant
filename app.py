@@ -1,7 +1,6 @@
 from flask import Flask, render_template, redirect, request
 
-from ExtractKeyInfo import extractCountry
-from RetrieveData import getCOVIDResults
+from RetrieveData import getCOVIDResults, extractCountry
 
 app = Flask(__name__, template_folder='templates')
 result = None

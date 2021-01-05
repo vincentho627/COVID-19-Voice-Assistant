@@ -1,6 +1,7 @@
 import json
 import pathlib
 import requests
+import spacy
 from datetime import date, timedelta
 
 
@@ -8,6 +9,18 @@ from datetime import date, timedelta
 # using https://api.covid19api.com/total/country/ API to fetch COVID data
 # https://documenter.getpostman.com/view/10808728/SzS8rjbc#27454960-ea1c-4b91-a0b6-0468bb4e6712
 # only works on countries
+
+
+nlp = spacy.load("en_core_web_sm")
+
+
+def extractCountry(sentence):
+    doc = nlp(sentence)
+    for token in doc.ents:
+        if token.label_ == 'GPE':
+            return token.text
+
+    return ""
 
 
 def getConfig():
