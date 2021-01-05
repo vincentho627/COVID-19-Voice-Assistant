@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COVID-19 Statistics</title>
+    <link rel="stylesheet" href="../static/styles/index_style.css">
+</head>
+<body>
+    <div>
+        <p class="output"><em>...diagnostic messages</em></p>
+    </div>
+    <h1>Welcome to COVID-19 Stats</h1>
+    <h2>Please select your options</h2>
+    <img src="../static/images/microphone.png" alt="microphone pic">
+    <p>Select here for voice assistant</p>
+    <img src="../static/images/input.png" alt="input pic">
+    <p>Select here for manual inputs</p>
+
+    <form action="/data" method="POST">
+        <label for="country">Country name:</label><br>
+        <input type="text" id="country" name="country"><br>
+        <button>Get Data</button>
+    </form>
+    <script type="module" src="../static/scripts/index.js"></script>
+</body>
+</html>
