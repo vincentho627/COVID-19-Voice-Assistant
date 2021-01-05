@@ -1,0 +1,15 @@
+body {
+  text-align: center;
+  background: linear-gradient(#9198e5, #e66465);
+}
+
+.circle {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+}
+
+.logo {
+  width: 60vh;
+}
