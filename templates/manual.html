@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>COVID-19 Manual Inputs</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel= "stylesheet" type="text/css" href="{{ url_for('static',filename='/css/manual.css') }}">
 </head>
 <body>
     <!-- <div>
@@ -11,7 +18,7 @@
 
     <form action="/data" method="POST">
         <label for="country">Country name:</label><br>
-        <input type="text" id="country" name="country"><br>
+        <input type="text" id="country" name="country" autocomplete="off"><br>
         <button>Get Data</button>
     </form>
 

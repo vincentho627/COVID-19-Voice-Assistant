@@ -22,10 +22,14 @@ var started = false;
 
 document.getElementById("select").onclick = function() {
 	if (!started) {
-	  recognition.start();
-	  console.log('Ready to receive a country.');
-	  started = true;
-	}
+	    recognition.start();
+	    console.log('Ready to receive a country.');
+	    started = true;
+	} else {
+	    recognition.stop();
+	    console.log('Paused.');
+        started = false;
+    }
 };
 
 recognition.onresult = function(event) {

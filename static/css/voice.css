@@ -1,0 +1,6 @@
+body {
+  min-height: 100vh;
+  text-align: center;
+  font-family: 'Hind Siliguri', sans-serif;
+  background: linear-gradient(20deg, #e66465 44%, #E4E9FD 44%);
+}
