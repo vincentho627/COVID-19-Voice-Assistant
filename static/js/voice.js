@@ -20,6 +20,7 @@ recognition.maxAlternatives = 1;
 // const diagnostic = document.querySelector('.output');
 var started = false;
 var mic = document.getElementById("mic");
+var info = document.getElementById("info");
 
 mic.style.background = "linear-gradient(0.25turn, #ffe9c5, #fa9191)";
 
@@ -43,19 +44,21 @@ mic.onclick = function() {
 	    console.log('Ready to receive a country.');
 	    mic.classList.add("glow");
 	    mic.style.background = "";
+	    info.textContent = "Listening...";
 	    started = true;
 	} else {
 	    recognition.stop();
 	    mic.style.background = "linear-gradient(0.25turn, #ffe9c5, #fa9191)";
 	    mic.classList.remove("glow");
 	    console.log('Paused.');
+	    info.textContent = "I'm ready!";
         started = false;
     }
 };
 
 recognition.onresult = function(event) {
     const transcript = event.results[0][0].transcript;
-    // diagnostic.textContent = 'Result received: ' + transcript + '.';
+    info.textContent = 'Result received: ' + transcript + '.';
     let result = {"text": transcript};
     fetch(`${window.origin}/data`, {
         method: "POST",
@@ -81,10 +84,10 @@ recognition.onspeechend = function() {
     started = false;
 };
 
-// recognition.onnomatch = function(event) {
-//     diagnostic.textContent = "I didn't recognise that country.";
-// };
+recognition.onnomatch = function(event) {
+    info.textContent = "I didn't recognise that country.";
+};
 
-// recognition.onerror = function(event) {
-//     diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
-// };
+recognition.onerror = function(event) {
+    info.textContent = 'Error occurred in recognition: ' + event.error;
+};

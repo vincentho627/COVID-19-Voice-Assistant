@@ -9,21 +9,23 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <link rel= "stylesheet" type="text/css" href="{{ url_for('static',filename='/css/index.css') }}">
     <link rel= "stylesheet" type="text/css" href="{{ url_for('static',filename='/css/manual.css') }}">
 </head>
 <body>
-    <!-- <div>
-        <p class="output"><em>...diagnostic messages</em></p>
-    </div> -->
-
-    <form action="/data" method="POST">
-        <label for="country">Country name:</label><br>
-        <input type="text" id="country" name="country" autocomplete="off"><br>
-        <button>Get Data</button>
+    <form action="/" method="GET">
+        <button class="bt home">Home page</button>
     </form>
 
-    <form action="/" method="GET">
-        <button>Home page</button>
+    <img class="logo" src="../static/images/logo.png" alt="logo pic">
+    <h4 class="options">Please input the country you would like to know how well it is doing with COVID.</h4>
+    <form action="/data" method="POST">
+        <div class="form__group field">
+            <input type="input" class="form__field" placeholder="Name" name="country" id='country' required autocomplete="off"/>
+            <label for="country" class="form__label">Country</label>
+        </div>
+        <br>
+        <button class="bt getData">Get Data</button>
     </form>
 
 </body>

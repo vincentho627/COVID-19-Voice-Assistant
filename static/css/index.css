@@ -39,6 +39,8 @@ button {
   font-size: 165%;
   font-weight: 600;
   margin-bottom: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .descriptions {
@@ -54,6 +56,63 @@ button {
   }
 
   .logo {
-    width: 45vh;
+    width: 40vh;
   }
 }
+
+.bt {
+    border-radius: 10%;
+    text-decoration: none;
+    border: 1px solid #ff577f;
+    position: relative;
+    overflow: hidden;
+    background-color: #cd5d7d;
+    height: 45px;
+    width: 125px;
+    font-size: 20px;
+    color: #E4E9FD;
+}
+
+.home {
+    left: 40%;
+    margin-top: 20px;
+}
+
+.bt:hover {
+    box-shadow: 1px 1px 25px 10px #ff577f;
+}
+
+.bt:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, #ff577f, transparent);
+    transition: all 650ms;
+}
+
+.bt:hover:before {
+  left: 100%;
+}
+
+
+.glow {
+    animation: glowing 1300ms infinite;
+}
+
+ @keyframes glowing {
+     0% {
+         background-color: #29a19c;
+         box-shadow: 0 0 5px #29a19c;
+     }
+     50% {
+         background-color: #29a19c;
+         box-shadow: 0 0 20px #29a19c;
+     }
+     100% {
+         background-color: #29a19c;
+         box-shadow: 0 0 5px #29a19c;
+     }
+ }
