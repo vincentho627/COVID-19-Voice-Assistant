@@ -27,11 +27,12 @@ def getData():
     global result, voice
     if request.method == "POST":
         req = request.get_json()
-        voice = True
         if req and 'text' in req:
+            voice = True
             country = extractCountry(req['text'])
         else:
             country = request.form['country']
+        print(country)
 
         result, success = getCOVIDResults(country)
         if success:
