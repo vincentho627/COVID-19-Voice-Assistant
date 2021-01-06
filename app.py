@@ -32,21 +32,22 @@ def getData():
             country = extractCountry(req['text'])
         else:
             country = request.form['country']
+        print(country)
 
         result, success = getCOVIDResults(country)
         if success:
             return render_template("country.html", country=result)
         else:
-            return render_template("error.html")
+            return render_template("error.html", country=result)
     else:
         if voice:
             voice = False
             if result:
                 return render_template("country.html", country=result)
             else:
-                return render_template("error.html")
+                return render_template("error.html", country=result)
         else:
-            return render_template("error.html")
+            return redirect("/")
 
 
 if __name__ == '__main__':
