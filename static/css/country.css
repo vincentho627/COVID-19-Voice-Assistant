@@ -1,0 +1,23 @@
+.country {
+    border-radius: 50%;
+    width: 60px;
+    border: 3px solid #fff;
+}
+
+.card-left {
+    padding-left: 100px;
+}
+
+.card-right {
+    padding-right: 100px;
+}
+
+@media (max-width: 768px) {
+    .card-left {
+        padding-left: 0;
+    }
+
+    .card-right {
+        padding-right: 0;
+    }
+}

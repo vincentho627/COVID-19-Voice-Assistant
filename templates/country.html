@@ -3,16 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>COVID-19 Statistics</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel= "stylesheet" type="text/css" href="{{ url_for('static',filename='/css/index.css') }}">
+    <link rel= "stylesheet" type="text/css" href="{{ url_for('static',filename='/css/country.css') }}">
 </head>
 <body>
-    <p>{{country.name}}</p>
-    <p>death = {{country.deaths}}</p>
-    <p>confirmed = {{country.confirmed}}</p>
-    <p>recovered = {{country.recovered}}</p>
-    <p>death percentage = {{country.percent}}</p>
+    <img class="logo" src="../static/images/logo.png" alt="logo pic"><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-left">
+                    <img class="country" src="{{ url_for('static', filename=country.url) }}" alt="country pic"><br><br>
+                    <h4 class="options">{{country.name}}</h4>
+                    <p>confirmed = {{country.confirmed}} cases</p>
+                    <p>recovered = {{country.recovered}} cases</p>
+                    <p>death = {{country.deaths}} cases</p>
+                    <p>death percentage = {{country.percent}}%</p><br>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-right">
+                    {% if not country.worldFailed %}
+                        <img class="country" src="../static/images/world_icon.png" alt="world pic"><br><br>
+                        <h4 class="options">World</h4>
+                        <p>confirmed = {{country.totalConfirmed}} cases</p>
+                        <p>recovered = {{country.totalRecovered}} cases</p>
+                        <p>death = {{country.totalDeaths}} cases</p>
+                        <p>death percentage = {{country.totalPercent}}%</p><br>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <form action="/" method="GET">
-        <button>Home page</button>
+        <button class="bt">Home page</button>
     </form>
 </body>
 </html>

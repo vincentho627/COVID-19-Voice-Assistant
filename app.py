@@ -33,7 +33,6 @@ def getData():
         else:
             country = request.form['country']
 
-        print(country)
         result, success = getCOVIDResults(country)
         if success:
             return render_template("country.html", country=result)
