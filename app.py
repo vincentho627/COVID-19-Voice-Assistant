@@ -27,8 +27,8 @@ def getData():
     global result, voice
     if request.method == "POST":
         req = request.get_json()
+        voice = True
         if req and 'text' in req:
-            voice = True
             country = extractCountry(req['text'])
         else:
             country = request.form['country']
@@ -40,8 +40,8 @@ def getData():
             return render_template("error.html", country=result)
     else:
         if voice:
+            voice = False
             if result:
-                voice = False
                 return render_template("country.html", country=result)
             else:
                 return render_template("error.html", country=result)
