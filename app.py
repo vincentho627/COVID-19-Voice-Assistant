@@ -9,8 +9,6 @@ voice = False
 
 @app.route("/")
 def start():
-    global voice
-    voice = False
     return render_template("index.html")
 
 
@@ -43,11 +41,12 @@ def getData():
     else:
         if voice:
             if result:
+                voice = False
                 return render_template("country.html", country=result)
             else:
                 return render_template("error.html", country=result)
         else:
-            return render_template("error.html", country=result)
+            return redirect("/")
 
 
 if __name__ == '__main__':
