@@ -68,6 +68,8 @@ def getCOVIDResults(countries):
         deaths = resp['Deaths']
         recovered = resp['Recovered']
         percent = round(float(deaths) / float(confirmed) * 100, 2)
+        if "Korea" in country:
+            country = "south korea"
         country_path = "/images/flaticon_countries/{}.png".format(country.lower().replace(" ", "-"))
 
         result['url'] = country_path
