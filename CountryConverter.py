@@ -251,8 +251,5 @@ countriesCodes = {'Afghanistan': 'AF',
                   'Åland Islands': 'AX'}
 
 
-# use https://pypi.org/project/pycountry/ as API
-
-
 def getCountryCode(country):
     return countriesCodes[country]
