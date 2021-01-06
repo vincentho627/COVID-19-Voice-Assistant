@@ -18,7 +18,7 @@ from flask import Flask, render_template, redirect, request
 Installing package, run:
 
 ```terminal
-pip install flask, spacy
+pip install -r requirements.txt
 ```
 
 Run Server
