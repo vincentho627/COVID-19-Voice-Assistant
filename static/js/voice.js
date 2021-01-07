@@ -17,7 +17,6 @@ recognition.lang = 'en-US';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
-// const diagnostic = document.querySelector('.output');
 var started = false;
 var mic = document.getElementById("mic");
 var info = document.getElementById("info");
@@ -56,31 +55,43 @@ mic.onclick = function() {
     }
 };
 
-recognition.onresult = function(event) {
-    const transcript = event.results[0][0].transcript;
-    info.textContent = 'Result received: ' + transcript + '.';
-    let result = {"text": transcript};
-    fetch(`${window.origin}/data`, {
+async function getCountryName(result) {
+    let response = await fetch(`${window.origin}/data`, {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(result),
         cache: "no-cache",
         headers: new Headers({
             "content-type": "application/json"
-        }),
-        redirect: 'follow',
-    }).then(response => {
-        console.log(response);
-        window.location.replace(response.url);
-    }).catch(function(err) {
-        console.info(err + " url: " + url);
-    });
+        })});
+    let data = await response.json();
+    return data
+}
+
+recognition.onresult = function (event) {
+    const transcript = event.results[0][0].transcript;
+    info.textContent = 'Result received: ' + transcript + '.';
+    let result = {"text": transcript};
+    var the_url = window.location.href;
+    var new_url = the_url.split('/');
+    new_url.pop();
+    getCountryName(result).then((country) => {
+            var name = country.name;
+            new_url = new_url.join('/') + "/" + name;
+            console.log(new_url);
+            window.location.replace(new_url);
+        })
+        .catch(function (err) {
+            console.log(err)
+            new_url = new_url.join('/') + "/error";
+            window.location.replace(new_url);
+        });
     console.log('Confidence: ' + event.results[0][0].confidence);
 };
 
 recognition.onspeechend = function() {
     recognition.stop();
-    document.getElementById("select").classList.remove("glow");
+    // document.getElementById("select").classList.remove("glow");
     started = false;
 };
 

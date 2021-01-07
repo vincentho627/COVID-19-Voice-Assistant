@@ -1,10 +1,10 @@
-from flask import Flask, render_template, redirect, request
+import json
+
+from flask import Flask, render_template, redirect, request, url_for
 
 from RetrieveData import getCOVIDResults, extractCountry
 
 app = Flask(__name__, template_folder='templates')
-result = None
-voice = False
 
 
 @app.route("/")
@@ -22,32 +22,35 @@ def manual():
     return render_template("manual.html")
 
 
-@app.route("/data", methods=["GET", "POST"])
-def getData():
-    global result, voice
-    if request.method == "POST":
-        req = request.get_json()
-        if req and 'text' in req:
-            voice = True
-            country = extractCountry(req['text'])
-        else:
-            country = request.form['country']
-        print(country)
+@app.route("/error")
+def error():
+    return render_template("error.html")
 
-        result, success = getCOVIDResults(country)
-        if success:
-            return render_template("country.html", country=result)
-        else:
-            return render_template("error.html", country=result)
+
+@app.route("/<country>")
+def result(country):
+    res, success = getCOVIDResults(country)
+    if success:
+        return render_template("country.html", country=res)
     else:
-        if voice:
-            voice = False
-            if result:
-                return render_template("country.html", country=result)
-            else:
-                return render_template("error.html", country=result)
-        else:
-            return redirect("/")
+        return render_template("error.html", country=result)
+
+
+@app.route("/data", methods=["POST"])
+def getData():
+    req = request.get_json()
+    if req and 'text' in req:
+        country = extractCountry(req['text'])
+        res = {"name": country}
+        response = app.response_class(
+            response=json.dumps(res),
+            status=200,
+            mimetype='application/json'
+        )
+        return response
+    else:
+        country = request.form['country']
+        return redirect(url_for("result", country=country))
 
 
 if __name__ == '__main__':
