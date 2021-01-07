@@ -65,28 +65,28 @@ async function getCountryName(result) {
             "content-type": "application/json"
         })});
     let data = await response.json();
-    return data
+    var the_url = window.location.href;
+    var new_url = the_url.split('/');
+    new_url.pop();
+    let name = data.name;
+    if (name === "") {
+        return new_url.join('/') + "/error";
+    }
+    return new_url.join('/') + "/country/" + name;
 }
 
 recognition.onresult = function (event) {
     const transcript = event.results[0][0].transcript;
     info.textContent = 'Result received: ' + transcript + '.';
     let result = {"text": transcript};
-    var the_url = window.location.href;
-    var new_url = the_url.split('/');
-    new_url.pop();
-    getCountryName(result).then((country) => {
-            var name = country.name;
-            if (name === "") {
-                new_url = new_url.join('/') + "/error";
-            } else {
-                new_url = new_url.join('/') + "/country/" + name;
-            }
-            console.log(new_url);
-            window.location.replace(new_url);
+    getCountryName(result).then((url) => {
+            console.log(url);
+            window.location.replace(url);
         })
         .catch(function (err) {
-            console.log(err);
+            var the_url = window.location.href;
+            var new_url = the_url.split('/');
+            new_url.pop();
             new_url = new_url.join('/') + "/error";
             window.location.replace(new_url);
         });
