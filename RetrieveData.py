@@ -59,7 +59,7 @@ def getCOVIDResults(countries):
         if "taiwan" in country.lower():
             country = "Taiwan"
         if "korea" in country.lower():
-            country = "South korea"
+            country = "South Korea"
         confirmed = resp['Confirmed']
         deaths = resp['Deaths']
         recovered = resp['Recovered']
