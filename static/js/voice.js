@@ -69,6 +69,7 @@ async function getCountryName(result) {
     var new_url = the_url.split('/');
     new_url.pop();
     let name = data.name;
+    console.log(name);
     if (name === "") {
         return new_url.join('/') + "/error";
     }
