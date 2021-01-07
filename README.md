@@ -1,6 +1,8 @@
 # COVID-19-Voice-Assistant
 
-Website: https://shrouded-oasis-24465.herokuapp.com/
+Website: https://shrouded-oasis-24465.herokuapp.com/ 
+
+<b>Voice Assistant only supported in Google Chrome and edge</b>
 
 Introduction
 ------------
