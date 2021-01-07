@@ -40,7 +40,6 @@ mic.onmouseleave = function() {
 mic.onclick = function() {
 	if (!started) {
 	    recognition.start();
-	    console.log('Ready to receive a country.');
 	    mic.classList.add("glow");
 	    mic.style.background = "";
 	    info.textContent = "Listening...";
@@ -49,7 +48,6 @@ mic.onclick = function() {
 	    recognition.stop();
 	    mic.style.background = "linear-gradient(0.25turn, #ffe9c5, #fa9191)";
 	    mic.classList.remove("glow");
-	    console.log('Paused.');
 	    info.textContent = "I'm ready!";
         started = false;
     }
@@ -69,7 +67,6 @@ async function getCountryName(result) {
     var new_url = the_url.split('/');
     new_url.pop();
     let name = data.name;
-    console.log(name);
     if (name === "") {
         return new_url.join('/') + "/error";
     }
@@ -81,7 +78,6 @@ recognition.onresult = function (event) {
     info.textContent = 'Result received: ' + transcript + '.';
     let result = {"text": transcript};
     getCountryName(result).then((url) => {
-            console.log(url);
             window.location.replace(url);
         })
         .catch(function (err) {
@@ -91,7 +87,6 @@ recognition.onresult = function (event) {
             new_url = new_url.join('/') + "/error";
             window.location.replace(new_url);
         });
-    console.log('Confidence: ' + event.results[0][0].confidence);
 };
 
 recognition.onspeechend = function() {
