@@ -56,6 +56,8 @@ def getCOVIDResults(countries):
         response = requests.request("GET", url)
         resp = response.json()[len(response.json()) - 1]
         country = resp['Country']
+        if "taiwan" in country.lower():
+            country = "Taiwan"
         confirmed = resp['Confirmed']
         deaths = resp['Deaths']
         recovered = resp['Recovered']
