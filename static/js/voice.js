@@ -95,7 +95,6 @@ recognition.onresult = function (event) {
 
 recognition.onspeechend = function() {
     recognition.stop();
-    // document.getElementById("select").classList.remove("glow");
     started = false;
 };
 
