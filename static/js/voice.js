@@ -77,12 +77,16 @@ recognition.onresult = function (event) {
     new_url.pop();
     getCountryName(result).then((country) => {
             var name = country.name;
-            new_url = new_url.join('/') + "/" + name;
+            if (name === "") {
+                new_url = new_url.join('/') + "/error";
+            } else {
+                new_url = new_url.join('/') + "/country/" + name;
+            }
             console.log(new_url);
             window.location.replace(new_url);
         })
         .catch(function (err) {
-            console.log(err)
+            console.log(err);
             new_url = new_url.join('/') + "/error";
             window.location.replace(new_url);
         });

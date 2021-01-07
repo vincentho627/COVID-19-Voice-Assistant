@@ -27,7 +27,12 @@ def error():
     return render_template("error.html")
 
 
-@app.route("/<country>")
+@app.route("/country/")
+def countryError():
+    return render_template("error.html")
+
+
+@app.route("/country/<country>")
 def result(country):
     res, success = getCOVIDResults(country)
     if success:
@@ -51,6 +56,11 @@ def getData():
     else:
         country = request.form['country']
         return redirect(url_for("result", country=country))
+
+
+@app.route("/<anyE>")
+def anyError(anyE):
+    return render_template("error.html")
 
 
 if __name__ == '__main__':
