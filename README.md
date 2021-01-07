@@ -2,7 +2,7 @@
 
 Website: https://shrouded-oasis-24465.herokuapp.com/ 
 
-Voice Assistant only supported in Google Chrome and edge
+<b>Voice Assistant only supported in Google Chrome and edge</b>
 
 Introduction
 ------------
