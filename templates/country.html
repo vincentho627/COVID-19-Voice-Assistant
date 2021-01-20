@@ -35,6 +35,13 @@
                         <p>recovered = {{country.totalRecovered}} cases</p>
                         <p>death = {{country.totalDeaths}} cases</p>
                         <p>death percentage = {{country.totalPercent}}%</p><br>
+                    {% else %}
+                        <img class="country" src="../static/images/world_icon.png" alt="world pic"><br><br>
+                        <h4 class="options">World</h4>
+                        <p>confirmed = UNKNOWN cases</p>
+                        <p>recovered = UNKNOWN cases</p>
+                        <p>death = UNKNOWN cases</p>
+                        <p>death percentage = UNKNOWN%</p><br>
                     {% endif %}
                 </div>
             </div>
